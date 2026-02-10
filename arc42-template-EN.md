@@ -1,215 +1,87 @@
 ---
 date: July 2025
-title: "![arc42](images/arc42-logo.png) Template"
+title: "![arc42](images/arc42-logo.png) ERP Taller Diésel VW/MB"
 ---
 
-# 
+# 1. Introduction and Goals
 
-**About arc42**
+## Requirements Overview
+El sistema ERP está diseñado para la gestión técnica y administrativa de un taller especializado en motores diésel (Volkswagen y Mercedes-Benz Sprinter).
+* **Módulos Independientes:** Separación estricta entre RRHH (contratación) y Nómina (pagos).
+* **Gestión de Compras:** Flujo transaccional separado del directorio de Proveedores.
+* **Control por Matrícula:** Trazabilidad total de repuestos y mano de obra por vehículo.
 
-arc42, the template for documentation of software and system
-architecture.
+## Quality Goals
+* **Modularidad:** Los módulos deben ser independientes para facilitar el mantenimiento.
+* **Precisión:** Control exacto de stock de repuestos críticos (inyectores, turbos).
+* **Seguridad:** Acceso restringido según el cargo (Ingeniero, Tecnólogo, Técnico).
 
-Template Version 9.0-EN. (based upon AsciiDoc version), July 2025
+## Stakeholders
 
-Created, maintained and © by Dr. Peter Hruschka, Dr. Gernot Starke and
-contributors. See <https://arc42.org>.
+| Role/Name | Contact | Expectations |
+| :--- | :--- | :--- |
+| **Jefe de Taller** | Ing. Jefe | Supervisar diagnósticos y aprobar compras de repuestos. |
+| **Administrador** | Contabilidad | Gestionar nómina, facturación y pagos a proveedores. |
+| **Técnico/Tecnólogo** | Operarios | Registrar reparaciones y solicitar repuestos por matrícula. |
 
-# Introduction and Goals {#section-introduction-and-goals}
+---
 
-## Requirements Overview {#_requirements_overview}
+# 2. Architecture Constraints
+* **Backend:** Desarrollo en **Java 21** con **Spring Boot 3**.
+* **Frontend:** Aplicación SPA con **React** y TypeScript.
+* **Base de Datos:** **PostgreSQL** para garantizar integridad referencial.
+* **Documentación:** Uso del estándar **arc42**.
 
-## Quality Goals {#_quality_goals}
+---
 
-## Stakeholders {#_stakeholders}
+# 3. Context and Scope
 
-+-------------+---------------------------+---------------------------+
-| Role/Name   | Contact                   | Expectations              |
-+=============+===========================+===========================+
-| *           | *\<Contact-1\>*           | *\<Expectation-1\>*       |
-| \<Role-1\>* |                           |                           |
-+-------------+---------------------------+---------------------------+
-| *           | *\<Contact-2\>*           | *\<Expectation-2\>*       |
-| \<Role-2\>* |                           |                           |
-+-------------+---------------------------+---------------------------+
+## Business Context
+El sistema centraliza las operaciones del taller, interactuando con proveedores externos y clientes finales.
 
-# Architecture Constraints {#section-architecture-constraints}
+![Diagrama de Contexto](./images/c1_context.png)
 
-# Context and Scope {#section-context-and-scope}
 
-## Business Context {#_business_context}
+---
 
-**\<Diagram or Table\>**
+# 5. Building Block View
 
-**\<optionally: Explanation of external domain interfaces\>**
+## Whitebox Overall System
+El sistema se estructura en componentes desacoplados para cumplir con la independencia de módulos solicitada.
 
-## Technical Context {#_technical_context}
+### Módulo RRHH (Black Box)
+* **Responsabilidad:** Gestionar la vinculación laboral, tipos de contrato (Fijo, Obra) y perfiles (Tecnólogo en Inyección, Técnico en Suspensión).
+* **Interfaces:** Provee datos de empleados al módulo de Nómina.
 
-**\<Diagram or Table\>**
+### Módulo Nómina (Black Box)
+* **Responsabilidad:** Procesar pagos, deducciones y bonificaciones según el cargo y desempeño.
+* **Interfaces:** Consume datos de RRHH y reportes de horas del Taller.
 
-**\<optionally: Explanation of technical interfaces\>**
+### Módulo Compras (Black Box)
+* **Responsabilidad:** Ejecutar órdenes de compra y seguimiento de pedidos.
+* **Interfaces:** Consulta el catálogo del Módulo de Proveedores y actualiza el Módulo de Stock.
 
-**\<Mapping Input/Output to Channels\>**
 
-# Solution Strategy {#section-solution-strategy}
 
-# Building Block View {#section-building-block-view}
+---
 
-## Whitebox Overall System {#_whitebox_overall_system}
+# 6. Runtime View
 
-***\<Overview Diagram\>***
+## Escenario: Flujo de Compra de Repuesto
+1. **Técnico:** Solicita un repuesto vinculado a una **Matrícula**.
+2. **Compras:** Genera la orden seleccionando un **Proveedor** del catálogo.
+3. **Stock:** Registra la entrada de la pieza y notifica al técnico.
+4. **Facturación:** El costo del repuesto se suma automáticamente a la cuenta del vehículo.
 
-Motivation
+---
 
-:   *\<text explanation\>*
+# 10. Glossary
 
-Contained Building Blocks
+| Term | Definition |
+| :--- | :--- |
+| **EIS** | Enterprise Information System - Módulo de información estratégica. |
+| **Tecnólogo** | Personal especializado en sistemas complejos (Culatas, Inyección). |
+| **Vinculación** | Relación contractual definida en el módulo de RRHH. |
+| **Sprinter Exception** | Lógica que limita servicios a vehículos Mercedes-Benz solo para mantenimiento rápido. |
 
-:   *\<Description of contained building block (black boxes)\>*
-
-Important Interfaces
-
-:   *\<Description of important interfaces\>*
-
-### \<Name black box 1\> {#_name_black_box_1}
-
-*\<Purpose/Responsibility\>*
-
-*\<Interface(s)\>*
-
-*\<(Optional) Quality/Performance Characteristics\>*
-
-*\<(Optional) Directory/File Location\>*
-
-*\<(Optional) Fulfilled Requirements\>*
-
-*\<(optional) Open Issues/Problems/Risks\>*
-
-### \<Name black box 2\> {#_name_black_box_2}
-
-*\<black box template\>*
-
-### \<Name black box n\> {#_name_black_box_n}
-
-*\<black box template\>*
-
-### \<Name interface 1\> {#_name_interface_1}
-
-...​
-
-### \<Name interface m\> {#_name_interface_m}
-
-## Level 2 {#_level_2}
-
-### White Box *\<building block 1\>* {#_white_box_building_block_1}
-
-*\<white box template\>*
-
-### White Box *\<building block 2\>* {#_white_box_building_block_2}
-
-*\<white box template\>*
-
-...​
-
-### White Box *\<building block m\>* {#_white_box_building_block_m}
-
-*\<white box template\>*
-
-## Level 3 {#_level_3}
-
-### White Box \<\_building block x.1\_\> {#_white_box_building_block_x_1}
-
-*\<white box template\>*
-
-### White Box \<\_building block x.2\_\> {#_white_box_building_block_x_2}
-
-*\<white box template\>*
-
-### White Box \<\_building block y.1\_\> {#_white_box_building_block_y_1}
-
-*\<white box template\>*
-
-# Runtime View {#section-runtime-view}
-
-## \<Runtime Scenario 1\> {#_runtime_scenario_1}
-
--   *\<insert runtime diagram or textual description of the scenario\>*
-
--   *\<insert description of the notable aspects of the interactions
-    between the building block instances depicted in this diagram.\>*
-
-## \<Runtime Scenario 2\> {#_runtime_scenario_2}
-
-## ...​
-
-## \<Runtime Scenario n\> {#_runtime_scenario_n}
-
-# Deployment View {#section-deployment-view}
-
-## Infrastructure Level 1 {#_infrastructure_level_1}
-
-***\<Overview Diagram\>***
-
-Motivation
-
-:   *\<explanation in text form\>*
-
-Quality and/or Performance Features
-
-:   *\<explanation in text form\>*
-
-Mapping of Building Blocks to Infrastructure
-
-:   *\<description of the mapping\>*
-
-## Infrastructure Level 2 {#_infrastructure_level_2}
-
-### *\<Infrastructure Element 1\>* {#_infrastructure_element_1}
-
-*\<diagram + explanation\>*
-
-### *\<Infrastructure Element 2\>* {#_infrastructure_element_2}
-
-*\<diagram + explanation\>*
-
-...​
-
-### *\<Infrastructure Element n\>* {#_infrastructure_element_n}
-
-*\<diagram + explanation\>*
-
-# Cross-cutting Concepts {#section-concepts}
-
-## *\<Concept 1\>* {#_concept_1}
-
-*\<explanation\>*
-
-## *\<Concept 2\>* {#_concept_2}
-
-*\<explanation\>*
-
-...​
-
-## *\<Concept n\>* {#_concept_n}
-
-*\<explanation\>*
-
-# Architecture Decisions {#section-design-decisions}
-
-# Quality Requirements {#section-quality-scenarios}
-
-## Quality Requirements Overview {#_quality_requirements_overview}
-
-## Quality Scenarios {#_quality_scenarios}
-
-# Risks and Technical Debts {#section-technical-risks}
-
-# Glossary {#section-glossary}
-
-+----------------------+-----------------------------------------------+
-| Term                 | Definition                                    |
-+======================+===============================================+
-| *\<Term-1\>*         | *\<definition-1\>*                            |
-+----------------------+-----------------------------------------------+
-| *\<Term-2\>*         | *\<definition-2\>*                            |
-+----------------------+-----------------------------------------------+
+---
