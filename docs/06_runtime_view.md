@@ -5,7 +5,7 @@ title: "![arc42](images/arc42-logo.png) ERP Taller Diésel VW/MB"
 
 # 6. Runtime View
 
-![Diagrama de Secuencia](<docs/images/Diagrama de Secuencia.png>)
+![Diagrama de Secuencia](<images/Diagrama de Secuencia.png>)
 
 ## Escenario: Flujo de Compra de Repuesto
 1. **Técnico:** Solicita un repuesto vinculado a una **Matrícula**.
