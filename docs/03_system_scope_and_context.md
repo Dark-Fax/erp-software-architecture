@@ -8,7 +8,7 @@ title: "![arc42](images/arc42-logo.png) ERP Taller Diésel VW/MB"
 ## Business Context
 El sistema centraliza las operaciones del taller, interactuando con proveedores externos y clientes finales.
 
-![Diagrama de Contexto](<docs/images/Diagrama de Contexto Nivel 1 - C1.png>)
+![Diagrama de Contexto](<images/Diagrama de Contexto Nivel 1 - C1.png>)
 
 
 ---
