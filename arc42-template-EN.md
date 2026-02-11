@@ -1,6 +1,6 @@
 ---
 date: July 2025
-title: "![arc42](<docs/images/arc42-logo.png>)ERP Taller Diésel VW/MB"
+# ![arc42](docs/images/arc42-logo.png) ERP Taller Diésel VW/MB
 ---
 
 # 1. Introduction and Goals
