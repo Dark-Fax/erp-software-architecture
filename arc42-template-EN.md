@@ -39,7 +39,7 @@ El sistema ERP está diseñado para la gestión técnica y administrativa de un 
 ## Business Context
 El sistema centraliza las operaciones del taller, interactuando con proveedores externos y clientes finales.
 
-![Diagrama de Contexto](./images/c1_context.png)
+![Diagrama de Contexto](.docs/images/Diagrama de Contexto Nivel 1 - C1.png)
 
 
 ---
