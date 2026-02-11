@@ -6,7 +6,7 @@ title: "![arc42](images/arc42-logo.png) ERP Taller Diésel VW/MB"
 
 # 5. Building Block View
 
-![Diagrama de Contenedores](<docs/images/Diagrama de Contenedores Nivel 2 - C2.png>)
+![Diagrama de Contenedores](<images/Diagrama de Contenedores Nivel 2 - C2.png>)
 
 ## Whitebox Overall System
 El sistema se estructura en componentes desacoplados para cumplir con la independencia de módulos solicitada.
