@@ -1,8 +1,6 @@
 # ![arc42](docs/images/arc42-logo.png)
 
 ---
-
----
 date: July 2025
 title: "ERP Taller Diésel VW/MB"
 ---
