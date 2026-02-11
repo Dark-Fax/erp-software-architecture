@@ -1,6 +1,8 @@
+![arc42](images/arc42-logo.png)
+
 ---
-date: July 2025
-title: "![arc42](images/arc42-logo.png) ERP Taller Diésel VW/MB"
+Fecha: Julio 2025
+Titulo: "ERP Taller Diésel VW/MB"
 ---
 
 # 3. Context and Scope
